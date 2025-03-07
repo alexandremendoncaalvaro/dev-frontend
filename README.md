@@ -140,12 +140,10 @@ Um bom treinador Pokémon não esquece o progresso do seu time!
 🔹 **Persistência no frontend:**
 
 - Se possível, faça com que os dados do treinamento **não sejam perdidos ao recarregar a página**.
-- Você pode usar **LocalStorage, IndexedDB ou Context API** para isso.
 
 🔹 **Persistência no backend (para os mais avançados! 🚀🔥):**
 
 - Se quiser dar um passo extra, **implemente um sistema para armazenar os resultados dos treinamentos**.
-- Isso pode ser feito com um **JSON local, json-server ou até um pequeno backend próprio**.
 
 > 💡 **Isso não é obrigatório**, mas pode destacar **habilidades de gerenciamento de estado e persistência**!
 
