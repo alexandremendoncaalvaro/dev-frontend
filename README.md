@@ -147,7 +147,7 @@ Um bom treinador Pokémon não esquece o progresso do seu time!
 - Se quiser dar um passo extra, **implemente um sistema para armazenar os resultados dos treinamentos**.
 - Isso pode ser feito com um **JSON local, json-server ou até um pequeno backend próprio**.
 
-## 💡 **Isso não é obrigatório**, mas pode destacar **habilidades de gerenciamento de estado e persistência**!
+> 💡 **Isso não é obrigatório**, mas pode destacar **habilidades de gerenciamento de estado e persistência**!
 
 ## **Dicas**
 
