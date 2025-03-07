@@ -57,7 +57,7 @@ Após cada época, o XP total será atualizado. Se o Pokémon atingir um **limit
 
 ## **Fluxo da API**
 
-A API de treinamento de Pokémon não armazena dados permanentemente. Ela **consulta a PokéAPI** para obter informações sobre os Pokémon e processa os cálculos internamente para retornar os resultados do treinamento.
+A API de treinamento de Pokémon **consulta a PokéAPI** para obter informações sobre os Pokémon e processa os cálculos internamente para retornar os resultados do treinamento.
 
 ```mermaid
 sequenceDiagram
