@@ -8,6 +8,8 @@ Neste desafio, você desenvolverá uma aplicação frontend que **simula um mode
 
 Você pode usar qualquer ferramenta disponível (incluindo **ChatGPT**!), mas lembre-se: um bom treinador sabe equilibrar **performance, estratégia e eficiência**.
 
+⏳ **Tempo esperado para o desafio:** **1 hora**, podendo estender no máximo até **1 hora e 30 minutos**.
+
 ---
 
 ## **Objetivo**
@@ -21,39 +23,9 @@ Lembre-se: nem todo Pokémon evolui facilmente! Alguns exigem mais XP, enquanto 
 
 ---
 
-## **Como funciona o treinamento?**
+## **Requisitos Técnicos**
 
-Assim como em Machine Learning, um treinamento Pokémon se baseia em:
-
-1️⃣ **Definir os hiperparâmetros**
-
-- Número de **épocas** (quantas rodadas de treino o Pokémon enfrentará).
-- **Batch size** (quantas batalhas ocorrem por rodada).
-- **Taxa de aprendizado (learning rate)** (quanto XP é ganho por batalha).
-- **Estratégia de treinamento (optimizer)**: Ofensivo, defensivo ou equilibrado.
-
-2️⃣ **Rodar o treinamento**  
-A API calculará os resultados, considerando os parâmetros escolhidos.
-
-3️⃣ **Monitorar os resultados**  
-Após cada época, o XP total será atualizado. Se o Pokémon atingir um **limite de XP**, ele pode **evoluir**!
-
-```mermaid
-sequenceDiagram
-    participant Treinador
-    participant Frontend
-    participant API_PokemonLearning
-
-    Treinador->>Frontend: Seleciona um Pokémon e define os parâmetros
-    Frontend->>API_PokemonLearning: POST /train/
-    API_PokemonLearning-->>Frontend: Retorna progresso do treinamento
-    Frontend->>Treinador: Exibe estatísticas, XP ganho e evolução (se houver)
-```
-
----
-
-## **Requisitos**
-
+📌 **React (Node 18 LTS)** – Com TypeScript ou JavaScript, conforme preferir.  
 📡 **Base da API:** `https://treinamento.inteligenciadascoisas.com.br/`
 
 | Método | Rota                         | Descrição                                         |
@@ -62,7 +34,58 @@ sequenceDiagram
 | `GET`  | `/pokemon/{name}/image`      | Retorna a imagem do Pokémon (Base64)              |
 | `POST` | `/train/`                    | Inicia um treinamento com os parâmetros definidos |
 
-#### **Exemplo de `POST /train/`**
+---
+
+## **Como funciona o treinamento?**
+
+Assim como em **Machine Learning**, um treinamento Pokémon segue um fluxo bem definido:
+
+1️⃣ **Definir os hiperparâmetros**
+
+- **Número de épocas**: Quantas rodadas de treino o Pokémon enfrentará.
+- **Batch size**: Quantas batalhas ocorrem por rodada.
+- **Taxa de aprendizado (learning rate)**: Quanto XP é ganho por batalha.
+- **Estratégia de treinamento (optimizer)**: Ofensivo, defensivo ou equilibrado.
+
+2️⃣ **Rodar o treinamento**  
+A API calculará os resultados com base nos parâmetros escolhidos, retornando o **XP ganho, as batalhas registradas e possíveis evoluções**.
+
+3️⃣ **Monitorar os resultados**  
+Após cada época, o XP total será atualizado. Se o Pokémon atingir um **limite de XP**, ele pode **evoluir**!
+
+---
+
+## **Fluxo da API**
+
+A API de treinamento de Pokémon não armazena dados permanentemente. Ela **consulta a PokéAPI** para obter informações sobre os Pokémon e processa os cálculos internamente para retornar os resultados do treinamento.
+
+```mermaid
+sequenceDiagram
+    participant Treinador
+    participant Frontend
+    participant TreinamentoPokeLearning
+    participant PokéAPI
+
+    Treinador->>Frontend: Abre a aplicação
+    Frontend->>TreinamentoPokeLearning: GET /pokemon?limit=10
+    TreinamentoPokeLearning->>PokéAPI: GET /pokemon?limit=10
+    PokéAPI-->>TreinamentoPokeLearning: Retorna lista de Pokémon
+    TreinamentoPokeLearning-->>Frontend: Retorna lista paginada de Pokémon
+    Frontend->>Treinador: Exibe lista de Pokémon com imagens
+
+    Treinador->>Frontend: Seleciona um Pokémon para treinar
+    Frontend->>TreinamentoPokeLearning: POST /train/
+    TreinamentoPokeLearning->>PokéAPI: GET /pokemon/{name}
+    PokéAPI-->>TreinamentoPokeLearning: Retorna dados do Pokémon
+    TreinamentoPokeLearning->>PokéAPI: GET /pokemon-species/{name}
+    PokéAPI-->>TreinamentoPokeLearning: Retorna informações de evolução
+    TreinamentoPokeLearning-->>Frontend: Retorna progresso do treinamento
+    Frontend->>Treinador: Exibe estatísticas, XP ganho e evolução (se houver)
+```
+
+---
+
+## **Exemplo de Requisição `POST /train/`**
 
 ```json
 {
@@ -99,15 +122,16 @@ sequenceDiagram
 - **Uma interface organizada e interativa para acompanhar o treinamento.**
 - **Filtros e paginação para navegar na Pokédex.**
 - **Boas práticas na construção do código e na experiência do usuário.**
+- **Atenção a detalhes técnicos, como ambiente de desenvolvimento.**
 - **Criatividade! Quem sabe seu Pokémon Learning não vira o próximo sucesso?** 😃🔥
 
 ---
 
 ## **Entrega**
 
-- Código hospedado no **GitHub** ou entregue via ZIP.
-- Um `INSTRUCTIONS.md` com instruções para rodar o projeto.
-- Demonstração funcional (Vercel, Netlify ou localhost).
+- Código-fonte a partir de um **pull request de um fork deste repositório**.
+- Arquivo `INSTRUCTIONS.md` com **instruções para rodar a aplicação**.
+- Explicação rápida sobre as **escolhas feitas no desenvolvimento**.
 
 ---
 
