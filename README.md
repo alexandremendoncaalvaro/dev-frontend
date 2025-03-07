@@ -106,7 +106,7 @@ sequenceDiagram
 ## **Entrega**
 
 - Código hospedado no **GitHub** ou entregue via ZIP.
-- Um `README.md` com instruções para rodar o projeto.
+- Um `INSTRUCTIONS.md` com instruções para rodar o projeto.
 - Demonstração funcional (Vercel, Netlify ou localhost).
 
 ---
