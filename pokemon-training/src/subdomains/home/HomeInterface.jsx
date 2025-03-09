@@ -2,6 +2,8 @@ import { Container, Text } from '@shared/ui';
 import { Pokedex } from './components/pokedex/pokedex';
 import { PokemonList } from './components/pokemonList';
 import { Reticle } from './components/pokedex/pokedexReticleBg';
+import { Pagination } from './components/button';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 export const HomeInterface = ({
     pokemonList,
@@ -20,13 +22,25 @@ export const HomeInterface = ({
                         <PokemonList pokemonList={pokemonList}/>
                     </Container>
                    
-                    <Container>
-                        <button onClick={
-                            () => {events.changeOffset(pokemonList.next)}}>cima</button>
-                        <button
-                        onClick={
-                            () => {events.changeOffset(pokemonList.previous)}}
-                        >baixo</button>
+                    <Container
+                        $display="flex"
+                        $flexDirection= "column"
+                        $justifyContent="space-evenly">
+                    
+                        <Pagination
+                        $rotate="-90deg"
+                            onClick={
+                                () => {events.changeOffset(pokemonList.previous)}}
+                            >
+                            <PlayArrowIcon/>
+                        </Pagination>
+                        <Pagination 
+                            $rotate="90deg"
+                            onClick={
+                                () => {events.changeOffset(pokemonList.next)}}>
+                                    <PlayArrowIcon/>
+                        </Pagination>
+                      
                     </Container>
                 </Container>
                
