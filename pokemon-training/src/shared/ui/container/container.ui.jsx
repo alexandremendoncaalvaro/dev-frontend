@@ -35,6 +35,7 @@ export const Container = styled.div`
     z-index: ${(props) => props.$zIndex};
     grid-template-columns: ${(props => props.$gridTemplateColumns)};
     grid-template-rows: ${(props => props.$gridTemplateRows)};
+    box-shadow: ${(props) => props.$boxShadow};
 
 
     &:focus {

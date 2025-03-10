@@ -38,6 +38,8 @@ export const Card = styled.div`
     bottom: ${(props) => props.$bottom};
     z-index: 1;
     text-align: ${(props => props.$textAlign)};
+    clip-path: ${(props) => props.$clipPath};
+    outline: ${(props) => props.$outline};
 
     &:focus {
         outline: ${(props) => props.$outline};

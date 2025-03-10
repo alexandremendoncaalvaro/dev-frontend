@@ -1,7 +1,7 @@
 import { PokemonItem } from './pokemonItem';
 import { Container, Card } from '@shared/ui';
 
-export const PokemonList = ({pokemonList}) => {
+export const PokemonList = ({pokemonList, events, states}) => {
 
 
     return(
@@ -21,7 +21,7 @@ export const PokemonList = ({pokemonList}) => {
                     $gridTemplateColumns="25% 25% 25% 25%"
                     $gridTemplateRows="33% 33% 33%">
                     {pokemonList.pokemons.map((data, index) => (
-                          <PokemonItem key={index} data={data}></PokemonItem>
+                          <PokemonItem key={index} data={data} events={events} states={states}></PokemonItem>
                     ))}
                 </Container>
             ) : (

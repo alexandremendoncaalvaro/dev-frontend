@@ -13,10 +13,14 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   --red: #E96045;
+  --red-dark: #832c1b;
   --yellow: #D0D985;
   --yellow-dark: #F7CA4D;
   --green: #37A693;
   --dark-blue: #212F3F;
+  --light-blue: #38829D;
+  --medium-blue: #2F667D;
+
   --dark-green: #24695e;
 
 }

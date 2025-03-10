@@ -1,15 +1,20 @@
 import { Card, Container, Image, Text} from '@shared/ui';
 import { Reticle } from './pokedex/pokedexReticleBg';
-export const PokemonItem = ({data}) => {
+export const PokemonItem = ({data, events, states}) => {
+
+    const isSelected = states.pokemonSelected?.name === data.name
+
     return(
     
     <Card
-    $display="flex"
+        onClick={() => events.setPokemonSelected(data)}
+        $display="flex"
         $boxShadow="inset 5px 7px 0px rgba(0, 0, 0, 0.3), 
         6px 5px 0px rgba(0, 0, 0, 0.2);"
         $bgColor="var(--green)"
         $borderRadius="2vh"
         $m="1rem"
+        $outline={isSelected ? "solid var(--yellow) 0.5rem" : "none"}
         $border="solid var(--dark-blue) 0.5rem"
         $position="relative">
              <Reticle $position="absolute"/> 

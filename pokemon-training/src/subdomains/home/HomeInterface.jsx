@@ -1,50 +1,36 @@
+/* eslint-disable react/prop-types */
 import { Container, Text } from '@shared/ui';
 import { Pokedex } from './components/pokedex/pokedex';
 import { PokemonList } from './components/pokemonList';
 import { Reticle } from './components/pokedex/pokedexReticleBg';
-import { Pagination } from './components/button';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { Pagination } from './components/Pagination/Pagination';
+import { CardTraining } from './components/Training/cardTraining';
 
 export const HomeInterface = ({
     pokemonList,
-    events
+    events,
+    states
 }) => {
 
     return(
-
        <Container $display="flex" $alignItems="center" $justifyContent="center">
-           
             <Pokedex>
                 <Reticle/> 
                 <Container $display="flex" $position='absolute'>
                     <Container>
                         <Text $textType="h1" $m="0.5rem">Pokedex</Text>
-                        <PokemonList pokemonList={pokemonList}/>
+                        <PokemonList pokemonList={pokemonList} events={events} states={states}/>
                     </Container>
-                   
-                    <Container
-                        $display="flex"
-                        $flexDirection= "column"
-                        $justifyContent="space-evenly">
                     
-                        <Pagination
-                        $rotate="-90deg"
-                            onClick={
-                                () => {events.changeOffset(pokemonList.previous)}}
-                            >
-                            <PlayArrowIcon/>
-                        </Pagination>
-                        <Pagination 
-                            $rotate="90deg"
-                            onClick={
-                                () => {events.changeOffset(pokemonList.next)}}>
-                                    <PlayArrowIcon/>
-                        </Pagination>
-                      
+                    <Pagination 
+                        onPrevious={() => events.changeOffset(pokemonList.previous)}
+                        onNext={() => events.changeOffset(pokemonList.next)}
+                    />
+
+                    <Container $h="95%" $w="50%" $p="1rem 1rem 0 0 ">
+                        <CardTraining selectedPokemon={states.pokemonSelected}/>
                     </Container>
                 </Container>
-               
-             
             </Pokedex>
        </Container>
     )

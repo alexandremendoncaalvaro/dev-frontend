@@ -21,6 +21,8 @@ export const Image = styled.img`
     bottom: ${(props) => props.$bottom};
     object-fit: ${(props) => props.$objectFit};
     aspect-ratio: ${(props) => props.$aspectRatio};
+    image-rendering: pixelated;
+    z-index: ${(props) => props.$zIndex};
 
     @media (min-width: 1366px) and (max-width: 1920px) {
         display: ${(props) => props.$display1366to1920};
