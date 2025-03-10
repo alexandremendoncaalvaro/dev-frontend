@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const getPokemonList = async (pokeListOffset) => {
-    const response = await axios.get(`https://treinamento.inteligenciadascoisas.com.br/pokemon?limit=10&offset=${pokeListOffset}`, {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/pokemon?limit=10&offset=${pokeListOffset}`, {
         headers: {
             'Content-Type': 'application/json',
         },
@@ -10,7 +10,7 @@ export const getPokemonList = async (pokeListOffset) => {
 };
 
 export const getPokemonImage = async (pokemonName) => {
-    const response = await axios.get(`https://treinamento.inteligenciadascoisas.com.br/pokemon/${pokemonName}/image`, {
+    const response = await axios.get(`${import.meta.env.VITE_API_URL}/pokemon/${pokemonName}/image`, {
         headers: {
             'Content-Type': 'application/json',
         },
@@ -20,7 +20,7 @@ export const getPokemonImage = async (pokemonName) => {
 }
 
 export const postTrainPokemon = (pokemonName, epochs, batchSize, learningRate, optimizer) => {
-    return axios.post(`https://treinamento.inteligenciadascoisas.com.br/train/`, {
+    return axios.post(`${import.meta.env.VITE_API_URL}/train/`, {
         pokemon: pokemonName,
         epochs: parseInt(epochs),
         batch_size: parseInt(batchSize),

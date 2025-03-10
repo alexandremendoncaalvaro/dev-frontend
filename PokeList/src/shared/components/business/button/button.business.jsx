@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Icon } from '../icon/icon';
+import { Icon } from '@shared/components/index';
 import { Btn } from './button.styles';
-
 
 export const Button = ({
     $w,

@@ -8,6 +8,7 @@ export const Container = styled.div `
     width: ${(props) => props.$w};
     height: ${(props) => props.$h};
     background-color: ${(props) => props.$backgroundColor};
+    background: ${(props) => props.$background};
     gap: ${(props) => props.$gap};
     flex-wrap: ${(props) => props.$flexWrap};
     border-radius: ${(props) => props.$borderRadius};
@@ -31,6 +32,24 @@ export const Container = styled.div `
     grid-column: ${(props) => props.$gridColumn};
     grid-row: ${(props) => props.$gridRow};
     grid-row-start: ${(props) => props.$gridRowStart};
+    cursor: ${(props) => props.$cursor};
+    background-image: ${(props) => props.$backgroundImage};
+    background-size: ${(props) => props.$backgroundSize};
+    background-repeat: ${(props) => props.$backgroundRepeat};
+    background-position: ${(props) => props.$backgroundPosition};
+    filter: ${(props) => props.$filter};
+    z-index: ${(props) => props.$zIndex};
+    backdrop-filter: ${(props) => props.$backdropFilter};
+    -webkit-backdrop-filter: ${(props) => props.$backdropFilter};
+    box-shadow: ${(props) => props.$boxShadow};
+    justify-self: ${(props) => props.$justifySelf};
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+        background-color: ${(props) => props.$hoverBackgroundColor};
+        background: ${(props) => props.$hoverBackground};
+        filter: ${(props) => props.$hoverFilter};
+    }
 
     -ms-overflow-style: none;  
     scrollbar-width: none;  
