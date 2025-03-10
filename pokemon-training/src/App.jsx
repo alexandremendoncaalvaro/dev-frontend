@@ -14,7 +14,7 @@ function App() {
         element:  <HomeContainer/>,
     },
     {
-        path: '/training',
+        path: '/training/:pokemonName',
         element:  <TrainingContainer/>,
     },
   ])

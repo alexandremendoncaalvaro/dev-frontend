@@ -3,8 +3,13 @@ import backgroundPokemon from '@assets/images/backgroundPokemon.jpg';
 import { Button } from '../button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useNavigate } from 'react-router';
-export const CardTraining = ({selectedPokemon}) => {
+import speechBubbleGif from '@assets/images/pixel-speech-bubble.gif';
+import backgroundPokemonGym from '@assets/images/gym.png';
+
+export const CardTraining = ({selectedPokemon, isInTrainingPage = false}) => {
     const navigate = useNavigate();
+
+  
     if(selectedPokemon == null) {
         return(
             <Card
@@ -32,7 +37,53 @@ export const CardTraining = ({selectedPokemon}) => {
         $m="1rem"
         $border="solid var(--dark-blue) 0.5rem"
         >
-        <Container $display="flex" $flexDirection="column" $position="relative" $alignItems="center" $justifyContent="center">
+        <Container 
+            $display="flex" 
+            $flexDirection="column" 
+            $position="relative" 
+            $alignItems="center" 
+            $justifyContent="center"
+            $h="100%"
+        >
+            <Image 
+                src={speechBubbleGif} 
+                $w="65%" 
+                $h="fit-content" 
+                $position="absolute" 
+                $top="15%" 
+                $left="35%"
+                $objectFit="contain"
+                $zIndex="2"
+            />
+            <Container 
+                $h="40vh" 
+                $w="40vh"
+                $position="relative"
+                $display="flex"
+                $alignItems="center"
+                $justifyContent="center"
+                $m="0 0 5% 0"
+            >
+                <Image
+                    $zIndex="1"
+                    $position="absolute"
+                    src={selectedPokemon.image_url}
+                    $w="100%"
+                    $h={isInTrainingPage ? "70%" : "100%"}
+                    $objectFit="contain"
+                    $top={isInTrainingPage ? "30%" : "0"}
+                    
+                />
+                <Image
+                    $position="absolute"
+                    src={isInTrainingPage ? backgroundPokemonGym : backgroundPokemon}
+                    $w="100%"
+                    $h="100%"
+                    $objectFit="cover"
+                    $borderRadius="2vh"
+                    $border="solid var(--dark-blue) 0.5rem"
+                />
+            </Container>
             <Card
                 $boxShadow="inset 3px 2px 0px rgba(0, 0, 0, 0.3), 
                 4px 4px 0px rgba(0, 0, 0, 0.2);"
@@ -41,55 +92,33 @@ export const CardTraining = ({selectedPokemon}) => {
                 $border="solid var(--dark-blue) 0.2rem"
                 $p="0.5rem"
                 $w="60%"
-                $left="20%"
-                $h="fit-content"
-                $position="absolute"
-                $top="60%"
-                $textAlign="center">
-                  
-                    <Text $fontSize="2rem">{selectedPokemon.name != null ? selectedPokemon.name.toUpperCase() : ""}</Text>
-                </Card>
-                <Container 
-                $h='fit-content' 
-                $w="fit-content" 
-                $position="absolute"
-                $top="6%"
-                $left="15%"
-            
-                >
-                    <Image
-                        $zIndex="1"
-                        $position="absolute"
-                        src={selectedPokemon.image_url}
-                        $w="fit-content"
-                        $h="40vh"/>
-                    <Image
-                        $position="absolute"
-                        src={backgroundPokemon}
-                        $w="fit-content"
-                        $borderRadius="2vh"
-                        $border="solid var(--dark-blue) 0.5rem"
-                        $h="40vh"/>
-                </Container>
-       
-            </Container>
-            <Button
-            $position="absolute"
-            $borderRadius="2rem"
-            $p="0.5rem 1rem"
-            $width="fit-content"
-            $top="88%"
-            $left="85%"
-            $height="fit-content"
-            $boxShadow="inset 3px 2px 0px rgba(0, 0, 0, 0.3), 
-            4px 4px 0px rgba(0, 0, 0, 0.2);"
-            onClick={() => navigate('/training')}
+                $textAlign="center"
+                $m="0 auto"
             >
-                <Text $fontSize="3.5rem"
-                $m="0 2rem 0 0">Train</Text>
-                <PlayArrowIcon fontSize="large"/>
-            </Button>
-           
-        </Card>
-    )
+                <Text $fontSize="2rem">
+                    {selectedPokemon.name != null ? selectedPokemon.name.toUpperCase() : ""}
+                </Text>
+            </Card>
+        </Container>
+        {isInTrainingPage ? <></> :
+        <Button
+        $position="absolute"
+        $borderRadius="2rem"
+        $p="0.5rem 1rem"
+        $width="20%"
+        $top="88%"
+        $left="79%"
+        $height="fit-content"
+        $boxShadow="inset 3px 2px 0px rgba(0, 0, 0, 0.3), 
+        4px 4px 0px rgba(0, 0, 0, 0.2);"
+        onClick={() => navigate(`/training/${selectedPokemon.name}`, { state: { name: selectedPokemon.name, image_url: selectedPokemon.image_url } })}
+        
+        >
+            <Text $fontSize="3.5rem"
+            $m="0 2rem 0 0" $textCursor="pointer">Let's Train!</Text>
+            <PlayArrowIcon fontSize="large"/>
+        </Button>
+        }
+    </Card>
+)
 }

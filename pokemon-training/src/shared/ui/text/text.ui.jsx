@@ -39,12 +39,7 @@ export const Text = styled(({ $textType = 'p', ...props }) =>
     padding-bottom: ${(props) => props.$pb};
     color: ${(props) => props.$textColor};
     text-align: ${(props) => props.$textAlign};
-    cursor: ${(props) =>
-        props.onClick
-            ? 'pointer'
-            : props.$textCursor
-            ? props.$textCursor
-            : 'default'};
+    cursor: ${(props) =>props.$textCursor};
     text-decoration: ${(props) => props.$textDecoration};
     text-transform: ${(props) => props.$textTransform};
     line-height: ${(props) => props.$textLineHeight};

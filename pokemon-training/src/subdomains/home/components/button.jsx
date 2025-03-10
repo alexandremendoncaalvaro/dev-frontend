@@ -15,11 +15,12 @@ export const Button = styled.button`
     padding: ${(props) => props.$p};
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    cursor: pointer !important;
+    z-index: 2;
     font-family: "Jersey 20", sans-serif;
     &:disabled {
         background: var(--dark-blue);
-        cursor: not-allowed;
+        cursor: not-allowed !important;
     }
     &:hover {
         background: var(--medium-blue);

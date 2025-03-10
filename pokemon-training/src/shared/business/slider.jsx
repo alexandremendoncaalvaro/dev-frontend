@@ -2,16 +2,17 @@ import { styled } from '@mui/material/styles';
 import Slider from '@mui/material/Slider';
 
 export const CustomSlider = styled(Slider)({
-    color: '#52af77',
+    color: 'var(--light-blue)',
     height: 8,
+    marginLeft: '1rem',
     '& .MuiSlider-track': {
-      border: 'none',
+      border: 'solid var(--dark-blue) 0.2rem',
     },
     '& .MuiSlider-thumb': {
       height: 24,
       width: 24,
       backgroundColor: '#fff',
-      border: '2px solid currentColor',
+      border: 'solid var(--dark-blue) 0.2rem',
       '&:focus, &:hover, &.Mui-active, &.Mui-focusVisible': {
         boxShadow: 'inherit',
       },
@@ -27,7 +28,7 @@ export const CustomSlider = styled(Slider)({
       width: 32,
       height: 32,
       borderRadius: '50% 50% 50% 0',
-      backgroundColor: '#52af77',
+      backgroundColor: 'var(--yellow-dark)',
       transformOrigin: 'bottom left',
       transform: 'translate(50%, -100%) rotate(-45deg) scale(0)',
       '&::before': { display: 'none' },
