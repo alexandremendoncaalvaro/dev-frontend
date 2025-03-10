@@ -10,10 +10,9 @@ export const TrainingEvolution = ({
     trainedPokemonName,
     trainedPokemonImage,
     totalXp,
+    portraitBackground
 }) => {
     const FINAL_XP_LIMIT = 20000;
-
-    console.log(trainedPokemonImage);
 
     const getEvolutionMessage = () => {
         if (loading) return <CircularProgress />;
@@ -40,10 +39,13 @@ export const TrainingEvolution = ({
                             $borderRadius="10%"
                             $border="2px solid black"
                             $m="1rem 0 0 0"
-                            $backgroundColor="#E0E0E0"
                             $w="fit-content"
                             $h="75%"
                             src={`data:image/png;base64, ${trainedPokemonImage}`}
+                            $backgroundImage={`url(${portraitBackground})`}
+                            $backgroundSize="cover"
+                            $backgroundRepeat="no-repeat"
+                            $backgroundPosition="center"
                         />
                     )}
                 </>
@@ -80,10 +82,13 @@ export const TrainingEvolution = ({
                     $borderRadius="10%"
                     $border="2px solid black"
                     $m="1rem 0 0 0"
-                    $backgroundColor="#E0E0E0"
                     $w="fit-content"
                     $h="75%"
                     src={`data:image/png;base64, ${trainedPokemonImage}`}
+                    $backgroundImage={`url(${portraitBackground})`}
+                    $backgroundSize="cover"
+                    $backgroundRepeat="no-repeat"
+                    $backgroundPosition="center"
                 />
             </>
         );

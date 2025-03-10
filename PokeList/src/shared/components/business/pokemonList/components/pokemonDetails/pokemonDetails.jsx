@@ -6,7 +6,7 @@ import { Container, Text, Image } from "@shared/components/index";
 import { TrainingParameters } from "./components/trainingParameters/trainingParameters";
 import { TrainingResults } from "./components/trainingResults/trainingResults";
 import { TrainingEvolution } from "./components/trainingEvolution/trainingEvolution";
-import { capitalizeName } from "@shared/utils/index"; 
+import { capitalizeName, getRandomBackgroundImage } from "@shared/utils/index";
 
 export const PokemonDetails = ({
     open,
@@ -24,6 +24,7 @@ export const PokemonDetails = ({
     const [trainedPokemonName, setTrainedPokemonName] = useState("");
     const [totalBattles, setTotalBattles] = useState(0);
     const [totalXp, setTotalXp] = useState(0);
+    const [portraitBackground, setPortraitBackground] = useState("");
 
     useEffect(() => {
         const fetchPokemonImage = async () => {
@@ -71,7 +72,12 @@ export const PokemonDetails = ({
         setOptimizer("ofensivo");
         setTotalBattles(0);
         setTotalXp(0);
+        setPortraitBackground("");
     };
+
+    useEffect(() => {
+        setPortraitBackground(getRandomBackgroundImage());
+    }, [open]);
 
     return ReactDOM.createPortal(
         <>
@@ -162,7 +168,10 @@ export const PokemonDetails = ({
                         $borderRadius="10%"
                         $border="2px solid black"
                         $m="1rem 0 0 0"
-                        $backgroundColor="#E0E0E0"
+                        $backgroundImage={`url(${portraitBackground})`}
+                        $backgroundSize="cover"
+                        $backgroundRepeat="no-repeat"
+                        $backgroundPosition="center"
                     />
                 </Container>
 
@@ -185,6 +194,7 @@ export const PokemonDetails = ({
                     trainedPokemonName={trainedPokemonName}
                     trainedPokemonImage={trainedPokemonImage}
                     totalXp={totalXp}
+                    portraitBackground={portraitBackground}
                 />
 
                 <TrainingResults

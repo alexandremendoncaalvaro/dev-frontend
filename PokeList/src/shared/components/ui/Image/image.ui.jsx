@@ -10,4 +10,8 @@ export const Image = styled.img `
     padding: ${(props) => props.$p};
     margin: ${(props) => props.$m};
     background-color: ${(props) => props.$backgroundColor};
+    background-image: ${(props) => props.$backgroundImage};
+    background-size: ${(props) => props.$backgroundSize};
+    background-position: ${(props) => props.$backgroundPosition};
+    background-repeat: ${(props) => props.$backgroundRepeat};
 `

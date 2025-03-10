@@ -17,7 +17,7 @@ function App() {
             <Container
                 $h="95%"
                 $w="95%"
-                $backdropFilter="blur(30px)"
+                $backdropFilter="blur(35px)"
                 $backgroundColor="rgba(255, 255, 255, 0.3)"
                 $borderRadius="20px"
                 $boxShadow="inset 2px 2px 0px 0px rgba(255, 255, 255, 1), inset -2px -2px 0px 0px rgba(0, 0, 0, 0.2), inset -4px -4px 20px 2px rgba(0, 0, 0, 0.5), 10px 10px 15px 0px rgba(0, 0, 0, 0.5)"

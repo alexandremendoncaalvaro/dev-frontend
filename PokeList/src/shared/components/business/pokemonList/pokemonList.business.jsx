@@ -145,6 +145,7 @@ export const PokemonList = () => {
                 $display="flex"
                 $justifyContent="center"
                 $alignItems="center"
+                $p="0 0 1rem 0"
             >
                 <Text
                     $fontSize="2rem"
