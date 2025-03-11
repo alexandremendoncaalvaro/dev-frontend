@@ -8,12 +8,14 @@ A aplicação permite que o treinador selecione um Pokémon desejado e treine-o 
 ## Instruções para Rodar
 
 1. Abra o terminal do **VS Code** e navegue até a pasta correta:
+   
    ```sh
    cd pokemon-training
    ```
 <br>
 
-2. Instale as dependências do projeto:
+2. Instale as dependências do projeto
+
    ```sh
    npm install
    ```
@@ -24,6 +26,7 @@ A aplicação permite que o treinador selecione um Pokémon desejado e treine-o 
    ```sh
    npm run dev
    ```
+<br>
 
 ## Escolhas no Desenvolvimento
 
