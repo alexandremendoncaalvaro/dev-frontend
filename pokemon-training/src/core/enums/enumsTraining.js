@@ -1,14 +1,14 @@
 export const typeTraining = [
     {
         value: 'Ofensivo',
-        label: 'Ofensivo',
+        label: 'Ofensive',
     },
     {
         value: 'Defensivo',
-        label: 'Defensivo',
+        label: 'Defensive',
     },
     {
         value: 'Balanceado',
-        label: 'Balanceado',
+        label: 'Balanced',
     }
 ]; 

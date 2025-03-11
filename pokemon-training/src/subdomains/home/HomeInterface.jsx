@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
-import { Container, Text } from '@shared/ui';
-import { Pokedex } from './components/pokedex/pokedex';
+import { Container, Text, Card, Image, Pokedex, Reticle} from '@shared/ui';
 import { PokemonList } from './components/pokemonList';
-import { Reticle } from './components/pokedex/pokedexReticleBg';
 import { Pagination } from './components/Pagination/Pagination';
-import { CardTraining } from './components/Training/cardTraining';
+import { CardTraining } from '@shared/business';
+import pokeLearningLogo from '@assets/images/logoLearning.png';
 
 export const HomeInterface = ({
     pokemonList,
@@ -14,11 +13,21 @@ export const HomeInterface = ({
 
     return(
        <Container $display="flex" $alignItems="center" $justifyContent="center">
+          <Card $position="absolute" $top="0.5rem" $left="1rem" $bgColor="var(--dark-green)" $borderRadius="2vh" 
+           $border="solid var(--dark-blue) 0.5rem"  $w="20%" $h="fit-content"
+           $boxShadow="inset 3px 2px 0px rgba(0, 0, 0, 0.3),4px 4px 0px rgba(0, 0, 0, 0.2)" $zIndex="1">
+                            <Container $display="flex" $alignItems="flex-start" $justifyContent="space-evenly">
+                            <Image src={pokeLearningLogo} $w="fit-content" $h="7vh"/>
+                            <Text $textType="h1" $m="0.8rem">Poke Learning</Text>
+                            </Container>
+                            
+                        </Card>
             <Pokedex>
                 <Reticle/> 
                 <Container $display="flex" $position='absolute'>
                     <Container>
-                        <Text $textType="h1" $m="0.5rem">Pokedex</Text>
+                      
+        
                         <PokemonList pokemonList={pokemonList} events={events} states={states}/>
                     </Container>
                     

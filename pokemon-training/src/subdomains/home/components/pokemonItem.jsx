@@ -1,5 +1,5 @@
 import { Card, Container, Image, Text} from '@shared/ui';
-import { Reticle } from './pokedex/pokedexReticleBg';
+import { Reticle } from '../../../shared/ui/pokedex/pokedexReticleBg';
 export const PokemonItem = ({data, events, states}) => {
 
     const isSelected = states.pokemonSelected?.name === data.name

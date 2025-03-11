@@ -1,6 +1,5 @@
-import { Container, Card, Text, Image } from '@shared/ui';
+import { Container, Card, Text, Image, Button } from '@shared/ui';
 import backgroundPokemon from '@assets/images/backgroundPokemon.jpg';
-import { Button } from '../button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { useNavigate } from 'react-router';
 import speechBubbleGif from '@assets/images/pixel-speech-bubble.gif';

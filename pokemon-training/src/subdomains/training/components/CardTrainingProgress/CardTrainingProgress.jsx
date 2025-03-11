@@ -6,8 +6,9 @@ import training from "@assets/images/training.gif"
 import { useState, useEffect } from "react";
 import { CardProgressEpochs } from "./components/CardProgressEpochs";
 
-export const CardTrainingProgress = ({isTraining, setIsTraining, result, isLoadingTrain, isErrorTrain, states, events}) => {
+export const CardTrainingProgress = ({isTraining, setIsTraining, result, isLoadingTrain, isErrorTrain, states, events, setPokemon}) => {
     const [image, setImage] = useState(pikachu);
+    const [textStatus, setTextStatus] = useState("Waiting for Parameters...");
 
     console.log(result, "no card training")
     
@@ -15,8 +16,10 @@ export const CardTrainingProgress = ({isTraining, setIsTraining, result, isLoadi
     useEffect(() => {
         if(isTraining){
             setImage(training);
+            setTextStatus("Training...");
         }else{
             setImage(pikachu);
+            setTextStatus("Waiting for Parameters...");
         }
     }, [isTraining]);
 
@@ -39,7 +42,7 @@ export const CardTrainingProgress = ({isTraining, setIsTraining, result, isLoadi
                     <Image src={pokeball} $boxShadow="inset 5px 7px 0px rgba(0, 0, 0, 0.3), 
                     6px 5px 0px rgba(0, 0, 0, 0.2);" $borderRadius="2vh"  $border="solid var(--dark-blue) 0.5rem"  $h="100%" />
                     <Card $bgColor="var(--red)" $borderRadius="2vh"  $border="solid var(--dark-blue) 0.5rem"  $w="90%" $h="100%">
-                        <Text $textType="h3" $m="0.5rem">Waiting for Parameters...</Text>
+                        <Text $textType="h3" $m="0.5rem">{textStatus}</Text>
                         </Card>
                 </Container>
              
@@ -47,6 +50,7 @@ export const CardTrainingProgress = ({isTraining, setIsTraining, result, isLoadi
                     6px 5px 0px rgba(0, 0, 0, 0.2);" $borderRadius="2vh"  $border="solid var(--dark-blue) 0.5rem"  $w="50%" $h="50%" />
                     {
                         isTraining ? <CardProgressEpochs 
+                        setPokemon={setPokemon}
                         epochs={states.epochsAnimation} 
                         xpPerBattle={states.xpPerBattleAnimation} 
                         xpPercentage={states.xpPercentageAnimation} 
@@ -55,7 +59,7 @@ export const CardTrainingProgress = ({isTraining, setIsTraining, result, isLoadi
                         setXpPerBattle={events.setXpPerBattleAnimation}
                         setXpPercentage={events.setXpPercentageAnimation}
                         setIndex={events.setIndexEpochsAnimation}
-                        setIsTraining={events.setIsTraining}
+                        setIsTraining={setIsTraining}
                         result={result} isLoadingTrain={isLoadingTrain} isErrorTrain={isErrorTrain} /> : <DialogInstructions />
 
                     }

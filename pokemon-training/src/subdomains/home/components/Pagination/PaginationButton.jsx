@@ -1,4 +1,4 @@
-import { Button } from '../button';
+import { Button } from '@shared/ui';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 export const PaginationButton = ({ direction, onClick }) => {

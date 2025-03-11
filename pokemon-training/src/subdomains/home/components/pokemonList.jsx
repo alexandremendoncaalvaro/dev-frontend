@@ -9,7 +9,7 @@ export const PokemonList = ({pokemonList, events, states}) => {
         $boxShadow="inset 5px 7px 0px rgba(0, 0, 0, 0.3), 
         6px 5px 0px rgba(0, 0, 0, 0.2);"
         $bgColor="var(--red)"
-        $h="89%"
+        $h="95%"
         $borderRadius="2vh"
         $m="1rem"
         $border="solid var(--dark-blue) 0.5rem"

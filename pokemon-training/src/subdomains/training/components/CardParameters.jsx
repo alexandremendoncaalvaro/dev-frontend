@@ -1,6 +1,5 @@
-import { Card, Text, Image, Container } from '@shared/ui';
+import { Card, Text, Image, Container, Button} from '@shared/ui';
 import { MenuItem, TextField } from '@mui/material';
-import { Button } from '../../home/components/button';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import { typeTraining } from '@core/enums/enumsTraining.js';
 import { ParameterSlider } from './ParameterSlider';
@@ -29,7 +28,7 @@ export const CardParameters = ({events, states}) => {
 
                 <Container $display="flex" $flexDirection="column" $gap="1rem" $flex="1">
                     <ParameterSlider 
-                        label="Epochs"
+                        label="Rounds"
                         min={1}
                         max={50}
                         step={1}
@@ -38,7 +37,7 @@ export const CardParameters = ({events, states}) => {
                     />
                     
                     <ParameterSlider 
-                        label="Batch Size"
+                        label="Battles Per Round"
                         min={1}
                         max={10}
                         step={1}
@@ -47,7 +46,7 @@ export const CardParameters = ({events, states}) => {
                     />
                     
                     <ParameterSlider 
-                        label="Learning Rate"
+                        label="XP Per Battle"
                         min={0.01}
                         max={1}
                         step={0.01}
@@ -55,7 +54,7 @@ export const CardParameters = ({events, states}) => {
                         onChange={events.setLearningRate}
                     />
 
-                    <Text $textType="h3" $m="0.5rem">Tipo do treino</Text>
+                    <Text $textType="h3" $m="0.5rem">Training Strategy</Text>
                     <TextField
                         sx={inputStyle}
                         id="outlined-select-currency"

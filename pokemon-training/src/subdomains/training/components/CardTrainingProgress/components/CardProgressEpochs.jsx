@@ -2,17 +2,18 @@ import { Card, Container, Text, Image, BasicModal } from "@shared/ui";
 import { useState, useEffect } from "react";
 import { ProgressBarCustom } from "@shared/business";
 import { ModalTrainingResult } from "./ModalTrainingResult";
+import { ModalEvolved } from "./ModalEvolved";
 export const CardProgressEpochs = ({result, 
     isLoadingTrain, 
     isErrorTrain, epochs, 
     xpPerBattle, xpPercentage, 
-    index, setEpochs, setXpPerBattle, setXpPercentage, setIndex, setIsTraining}) => {
+    index, setEpochs, setXpPerBattle, setXpPercentage, setIndex, setIsTraining, setPokemon}) => {
   
     const [open, setOpen] = useState(false);
-
-    console.log(open, "open");
+    const [openEvolved, setOpenEvolved] = useState(false);
 
     if(isErrorTrain){
+      setIsTraining(false);
         return (
             <Card
             $h="25%"
@@ -47,29 +48,18 @@ export const CardProgressEpochs = ({result,
           setXpPerBattle(result.battles[index].xp_gained);
           setIndex((prevIndex) => prevIndex + 1);
           calculateXpPercentage(result.battles[index].xp_gained, result.total_xp);
-      
-          console.log("epochs:", result.battles[index].epoch);
+    
           
           if (index + 1 >= result.battles.length) {
             clearInterval(interval); 
+            setOpen(true);
+           
           }
       
         }, 200);
       
         return () => clearInterval(interval); 
       }, [result, index]);
-
-      useEffect(() => {
-
-        if(xpPercentage === 100){
-
-            clearInterval(interval);
-            setOpen(true);
-            
-
-        }
-
-      }, [xpPercentage]);
 
 
       const calculateXpPercentage = (xpPerBattle, xpTotal) => {
@@ -79,6 +69,17 @@ export const CardProgressEpochs = ({result,
         
             setXpPercentage((prev) => Math.min(prev + xpPercentageTemp, 100)); 
           }
+      }
+
+      const handleClose = () => {
+        setOpen(false)
+      
+        if(result.pokemon != result.final_pokemon){
+            setOpenEvolved(true);
+            return;
+        }
+
+        setIsTraining(false);
       }
 
         return (
@@ -95,12 +96,15 @@ export const CardProgressEpochs = ({result,
         $boxShadow="inset 5px 7px 0px rgba(0, 0, 0, 0.3)">
             <Container $display="flex" $flexDirection="column" $justifyContent="space-between">
             
-                <Text $textColor="var(--dark-blue)" $fontSize="1.5rem" $fontWeight="bold" >Battle: {epochs}</Text>
+                <Text $textColor="var(--dark-blue)" $fontSize="1.5rem" $fontWeight="bold" >Round: {epochs}</Text>
                 <Text $textColor="var(--dark-blue)" $fontSize="1.5rem" $fontWeight="bold" >XP: {xpPerBattle}</Text>
                 <ProgressBarCustom value={xpPercentage} variant="determinate"/>
 
-                <BasicModal open={open}  onClose={() => setOpen(false)}>
-                  <ModalTrainingResult result={result} setOpen={setOpen} />
+                <BasicModal open={open}  onClose={() => handleClose()}>
+                  <ModalTrainingResult result={result} handleClose={handleClose} />
+                </BasicModal>
+                <BasicModal open={openEvolved}  onClose={() => {setOpenEvolved(false); setIsTraining(false)}}>
+                    <ModalEvolved result={result} setPokemon={setPokemon} />
                 </BasicModal>
             </Container>
            

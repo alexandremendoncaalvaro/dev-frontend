@@ -3,7 +3,19 @@ import dumbell from '@assets/images/dumbell.png';
 import sword from '@assets/images/sword.png';
 import { LineChart } from '@mui/x-charts/LineChart';
 
-export const ModalTrainingResult = ({result, setOpen}) => {
+export const ModalTrainingResult = ({result, handleClose}) => {
+
+    const xpByEpoch = {};
+
+    result.battles.forEach(({ epoch, xp_gained }) => {
+        if (!xpByEpoch[epoch]) xpByEpoch[epoch] = [];
+        xpByEpoch[epoch].push(xp_gained);
+    });
+
+    const averageXpByEpoch = Object.keys(xpByEpoch).map(epoch => ({
+        epoch: parseInt(epoch),
+        avg_xp: xpByEpoch[epoch].reduce((a, b) => a + b, 0) / xpByEpoch[epoch].length
+    }));
     
     return (
 
@@ -23,11 +35,9 @@ export const ModalTrainingResult = ({result, setOpen}) => {
         >
 
 
-          
-
            <Container $display="flex" $flexDirection="column" $alignItems="flex-end" $justifyContent="flex-end">
 
-            <Text onClick={() => setOpen(false)} $textType="h1" $m="0.5rem">
+            <Text onClick={() => handleClose()} $textType="h1" $m="0.5rem">
                 x</Text>
             <Card
             $bgColor="var(--green)" $borderRadius="2vh" 
@@ -73,7 +83,7 @@ export const ModalTrainingResult = ({result, setOpen}) => {
                         </Card>
                         <LineChart
                             xAxis={[{
-                                data: result.battles.map(b => b.epoch),
+                                data: averageXpByEpoch.map(b => b.epoch),
                                 label: "Battle",
                                 sx: {
                                     fontFamily: "var(--font-family)", 
@@ -82,7 +92,7 @@ export const ModalTrainingResult = ({result, setOpen}) => {
                                 }
                             }]}
                             series={[{
-                                data: result.battles.map(b => b.xp_gained),
+                                data: averageXpByEpoch.map(b => b.avg_xp),
                                 area: true,
                                 baseline: 'min',
                                 color: '#24695e',
@@ -92,7 +102,7 @@ export const ModalTrainingResult = ({result, setOpen}) => {
                                     color: "red"
                                 }
                             }]}
-                            width={500}
+                            width={1000}
                             height={300}
                             sx={{
                                 fontFamily: "var(--font-family)", // Fonte geral do gráfico

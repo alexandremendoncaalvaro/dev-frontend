@@ -25,7 +25,7 @@ export const usePokemonImage = (pokemonName) => {
         };
 
         fetchData();
-    }, [pokemonName]);
+    }, []);
 
     return ({pokemon, isLoading, isError})
 
